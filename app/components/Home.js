@@ -8,27 +8,30 @@ import { FaCaretDown } from "react-icons/fa";
 
 const Home = () => {
   useEffect(() => {
-    // ScrollReveal يشتغل فقط على العميل (المتصفح)
-    const ScrollReveal = require("scrollreveal");
-    const sr = ScrollReveal();
+    // dynamic import ل ScrollReveal عشان يمنع مشاكل require()
+    import("scrollreveal").then((ScrollReveal) => {
+      const sr = ScrollReveal.default(); // مهم جدًا: .default
 
-    sr.reveal(".hero", {
-      duration: 1000,
-      origin: "right",
-      easing: "ease-in-out",
-      reset: true, // خليها Boolean بدل "string"
-    });
-    sr.reveal(".text", {
-      duration: 1000,
-      origin: "top",
-      easing: "ease-in-out",
-      reset: true,
-    });
-    sr.reveal(".meadi", {
-      duration: 1000,
-      origin: "left",
-      easing: "ease-in-out",
-      reset: true,
+      sr.reveal(".hero", {
+        duration: 1000,
+        origin: "right",
+        easing: "ease-in-out",
+        reset: true,
+      });
+
+      sr.reveal(".text", {
+        duration: 1000,
+        origin: "top",
+        easing: "ease-in-out",
+        reset: true,
+      });
+
+      sr.reveal(".meadi", {
+        duration: 1000,
+        origin: "left",
+        easing: "ease-in-out",
+        reset: true,
+      });
     });
   }, []);
 
